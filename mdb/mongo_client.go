@@ -66,7 +66,7 @@ func NewMongoClient(uri string) (*mongo.Client, error) {
 		}
 		opts.SetTLSConfig(&tls.Config{RootCAs: roots, Certificates: []tls.Certificate{certs}})
 	}
-	opts.SetServerSelectionTimeout(5 * time.Second)
+	opts.SetServerSelectionTimeout(60 * time.Second)
 	if client, err = mongo.NewClient(opts); err != nil {
 		return client, err
 	}
