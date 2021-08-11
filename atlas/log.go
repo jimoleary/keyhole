@@ -66,6 +66,8 @@ func (api *API) DownloadLogs() ([]string, error) {
 		}
 		if process == "REPLICA_PRIMARY" || process == "REPLICA_SECONDARY" {
 			hosts = append(hosts, entity{hostname: host, log: "mongodb.gz"})
+		} else if process == "SHARD_CONFIG_PRIMARY" || process == "SHARD_CONFIG_SECONDARY" {
+			hosts = append(hosts, entity{hostname: host, log: "config.gz"})
 		} else if process == "SHARD_MONGOS" {
 			hosts = append(hosts, entity{hostname: host, log: "mongos.gz"})
 		}

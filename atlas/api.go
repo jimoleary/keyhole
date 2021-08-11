@@ -14,8 +14,16 @@ import (
 	"github.com/simagix/gox"
 )
 
+func getEnvOrDefault(key, fallback string) string {
+    value, exists := os.LookupEnv(key)
+    if !exists {
+        value = fallback
+    }
+    return value
+}
+
 // BaseURL -
-const BaseURL = "https://cloud.mongodb.com/api/atlas/v1.0"
+var BaseURL = getEnvOrDefault("ATLAS_API_SERVER", "https://cloud.mongodb.com/api/atlas/v1.0")
 
 // ApplicationJSON -
 const ApplicationJSON = "application/json"
